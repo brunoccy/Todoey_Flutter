@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:quizz/widgetCustom/todo_row.dart';
+import 'package:quizz/widgetCustom/tasks_list.dart';
+import './add_task_screen.dart';
 
 class TaskScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed: () {
+          showModalBottomSheet(context: context, builder: (BuildContext context) => AddTaskScreen());
+        },
         child: Icon(Icons.add),
         backgroundColor: Colors.lightBlueAccent,
       ),
@@ -59,14 +63,7 @@ class TaskScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: ListView(
-                children: <Widget>[
-                  ListTile(
-                    title: Text('daa'),
-                    trailing: Checkbox(value: false, onChanged: null),
-                  ),
-                ],
-              ),
+              child: TasksList(),
             ),
           ),
         ],
