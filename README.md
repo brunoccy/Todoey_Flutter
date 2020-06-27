@@ -1,4 +1,4 @@
-# quizz
+# Todo app
 
 A new Flutter project.
 
