@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:quizz/models/task_data.dart';
 import 'package:quizz/widgetCustom/tasks_list.dart';
 import './add_task_screen.dart';
+import 'package:provider/provider.dart';
+
 
 class TaskScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showModalBottomSheet(context: context, builder: (BuildContext context) => AddTaskScreen());
+          showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) =>
+                  AddTaskScreen());
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.lightBlueAccent,
@@ -44,7 +49,8 @@ class TaskScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '12 Tasks',
+                  Provider.of<TaskData>(context).taskCount.toString() +
+                      ' Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15,

@@ -1,10 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quizz/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String taskName;
+
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -29,17 +33,23 @@ class AddTaskScreen extends StatelessWidget {
             TextField(
               autofocus: true,
               textAlign: TextAlign.center,
+              onChanged: (value) => taskName = value,
             ),
-            FlatButton(
-              child: Text(
-                'Add',
-                style: TextStyle(
-                  color: Colors.white,
+            Consumer<TaskData>(builder: (context, taskData, child) {
+              return FlatButton(
+                child: Text(
+                  'Add',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              color: Colors.lightBlueAccent,
-              onPressed: () {},
-            ),
+                color: Colors.lightBlueAccent,
+                onPressed: () {
+                  taskData.addTask(newTitle: taskName);
+                  Navigator.pop(context);
+                },
+              );
+            }),
           ],
         ),
       ),
